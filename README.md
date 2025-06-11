@@ -6,7 +6,7 @@ This is a **scalable, containerized full-stack web application**, built with per
 
 ## 🌐 Live Deployment
 
-🔗 [**Visit the App**](Blogify-env.eba-cdrpgjj2.us-east-2.elasticbeanstalk.com) *(Add your deployment link here)*
+🔗 [**Visit the App**](#) *(Blogify-env.eba-cdrpgjj2.us-east-2.elasticbeanstalk.com)*
 
 ---
 
