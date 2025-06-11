@@ -4,44 +4,28 @@
     <%- include('./partials/head.ejs') %>
     <title>Blog</title>
 </head>
-<body>
+<body class="bg-gray-100 text-gray-800">
     <%- include('./partials/scripts.ejs') %>
-    
     <%- include("./partials/nav.ejs") %>
-    
-    <% if (user) { %>
-        <div class="container mt-4">
-            <h1><%= blog.title %></h1>
-            <img src="<%= blog.coverImageURL %>" width="700px">
-            <p><%= blog.body %></p>
-        </div>
-    <% } %>
 
-    <div class="conatiner mt-4">
-        <img src="<%= blog.createdBy.profileImageURL %>" width="50px">
-        <%= blog.createdBy.fullName %>
+    <!-- Hero Image -->
+    <div class="w-full h-[60vh] md:h-[75vh] overflow-hidden relative">
+        <img
+            src="<%= blog.coverImageURL %>"
+            alt="Blog Cover"
+            class="w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-black/30"></div> <!-- Optional dark overlay -->
     </div>
-    
 
-
-    
-
-    <div class="container mt-3">
-        <h1>Comments</h1>
-        <% if (locals.user) { %>
-            <form action="/comment/<%= blog._id %>" method="post">
-                <div class="mb-3">
-                    
-                    <input placeholder="Comment.." name="content" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        
-                  </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        <% } %>
-
-        
+    <!-- Title and Body -->
+    <div class="max-w-3xl mx-auto px-4 py-10">
+        <h1 class="text-4xl font-bold mb-6 text-center text-gray-900">
+            <%= blog.title %>
+        </h1>
+        <p class="text-lg leading-relaxed text-gray-700 whitespace-pre-line">
+            <%= blog.body %>
+        </p>
     </div>
-     
-    
 </body>
 </html>

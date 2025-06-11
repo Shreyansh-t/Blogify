@@ -6,49 +6,47 @@
 </head>
 <body class="bg-gray-100">
     <%- include('./partials/scripts.ejs') %>
-    
     <%- include("./partials/nav.ejs") %>
-    
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        <% blogs.forEach(blog => { %>
-          <div class="w-full h-80 rounded-lg border border-gray-200 bg-white shadow-sm flex flex-col overflow-hidden">
-            
-            <!-- Fixed image box -->
-            <div class="h-32 w-full overflow-hidden bg-gray-100">
-                <img src="<%= blog.coverImageURL %>"
-                     alt=""
-                     class="w-full h-full object-cover" />
-              </div>
-            
-            <!-- Text content box -->
-            <div class="flex-1 flex flex-col justify-between px-4 py-3">
-              <div>
-                <a href="/blog/<%= blog._id %>">
-                  <h5 class="text-lg font-bold text-gray-900 line-clamp-2 h-[3rem]">
-                    <%= blog.title %>
-                  </h5>
-                </a>
-                <p class="text-sm text-gray-700 line-clamp-2 h-[2.5rem] mt-1">
-                  <%= blog.body.split('.')[0] %>
-                </p>
-              </div>
-              
-              <!-- Button box pinned at bottom -->
-              <div class="mt-auto pt-2">
-                <a href="/blog/<%= blog._id %>"
-                   class="w-full inline-flex items-center justify-center rounded-lg bg-blue-700 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">
-                  Read more
-                  <svg class="ms-2 h-3.5 w-3.5 rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                    <path d="M1 5h12m0 0L9 1m4 4L9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        <% }) %>
-      </div>
-      
-      
 
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+        <% blogs.forEach(blog => { %>
+            <div class="relative w-full h-80 rounded-lg border border-gray-200 bg-white shadow-sm flex flex-col overflow-hidden">
+                
+                <!-- Fixed image box -->
+                <div class="w-full h-32 overflow-hidden bg-gray-100">
+                    <img src="<%= blog.coverImageURL %>"
+                         alt=""
+                         class="w-full h-full object-cover" />
+                  </div>
+
+                <!-- Content area -->
+                <div class="flex-1 px-4 pt-3 pb-10 flex flex-col justify-between">
+                    <div>
+                        <a href="/blog/<%= blog._id %>">
+                            <h5 class="text-lg font-bold text-gray-900 line-clamp-2 h-[3rem]">
+                                <%= blog.title %>
+                            </h5>
+                        </a>
+                        <p class="text-sm text-gray-700 mt-1 line-clamp-2 h-[2.5rem]">
+                            <%= blog.body.split('.')[0] %>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Fixed button at bottom (2-3px above boundary) -->
+                <a href="/blog/<%= blog._id %>"
+                   class="absolute bottom-2 left-1/2 -translate-x-1/2 inline-flex items-center justify-center rounded-lg bg-blue-700 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                    Read more
+                    <svg class="ms-2 h-3.5 w-3.5 rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                        <path d="M1 5h12m0 0L9 1m4 4L9 9"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round" />
+                    </svg>
+                </a>
+            </div>
+        <% }) %>
+    </div>
 </body>
 </html>
