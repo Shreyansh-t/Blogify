@@ -2,22 +2,37 @@
   "name": "youtube-blog",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://github.com/Shreyansh-t/Blogify#readme",
+  "bugs": {
+    "url": "https://github.com/Shreyansh-t/Blogify/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shreyansh-t/Blogify.git"
+  },
   "license": "ISC",
   "author": "",
   "type": "commonjs",
   "main": "app.js",
   "scripts": {
     "dev": "nodemon app.js",
-    "start": "nodemon app.js"
+    "build:css": "postcss src/css/styles.css -o public/css/styles.css",
+    "watch:css": "postcss src/css/styles.css -o public/css/styles.css --watch",
+    "start": "node app.js"
   },
   "dependencies": {
+    "@tailwindcss/postcss": "^4.1.8",
+    "autoprefixer": "^10.4.21",
     "cookie-parser": "^1.4.7",
     "dotenv": "^16.5.0",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.15.1",
-    "multer": "^2.0.1"
+    "multer": "^2.0.1",
+    "postcss": "^8.5.4",
+    "postcss-cli": "^11.0.1",
+    "tailwindcss": "^4.1.8"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"

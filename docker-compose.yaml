@@ -1,0 +1,50 @@
+# Use version 3.8 of the Docker Compose file format, which is recent and stable.
+version: '3.8'
+
+# Define the services (containers) that make up your application.
+services:
+  # This is your Node.js application service.
+  app:
+    # Build the Docker image from the Dockerfile in the current directory.
+    build: .
+    # Map port 3000 on your host machine to port 3000 in the container.
+    ports:
+      - "1000:1000"
+    # Set environment variables for the application container.
+    environment:
+      # This is the connection string for the MongoDB service defined below.
+      # 'mongo' is the hostname, which Docker Compose resolves to the IP of the mongo container.
+      # 'blogify' is the name of the database to be used inside the container.
+      MONGO_URL: mongodb://mongo:27017/blogify
+      PORT: 1000
+    # This links this service to the 'mongo' service.
+    # It ensures that the 'mongo' service is started before the 'app' service.
+    depends_on:
+      - mongo
+    # Mount the local source code directory into the container.
+    # This enables hot-reloading: changes you make to your code on your machine
+    # are instantly reflected inside the container without needing to rebuild the image.
+    volumes:
+      - .:/usr/src/app
+      # Exclude node_modules from being mounted to prevent conflicts with
+      # the container's node_modules directory.
+      - /usr/src/app/node_modules
+
+  # This is your MongoDB database service.
+  mongo:
+    # Use the official MongoDB image from Docker Hub.
+    image: mongo:latest
+    # This section is optional but highly recommended. It maps the container's
+    # port 27017 to your host machine's port 27017. This allows you to
+    # connect to the database from your host machine using tools like MongoDB Compass.
+    ports:
+      - "27017:27017"
+    # This creates a persistent volume for the database data.
+    # It ensures that your data is saved even if you stop or remove the container.
+    volumes:
+      - mongo-data:/data/db
+
+# Define the volumes that can be used by services.
+volumes:
+  # This declares the 'mongo-data' volume used by the mongo service.
+  mongo-data:
